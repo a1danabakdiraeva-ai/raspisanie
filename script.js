@@ -1,62 +1,71 @@
 /* =====================================================================
-   1. ДАННЫЕ РАСПИСАНИЯ
+   1. ДАННЫЕ РАСПИСАНИЯ — 9-В класс
    ---------------------------------------------------------------------
-   Меняй расписание только здесь. У каждого урока можно указать:
+   Меняй расписание только здесь. У каждого урока указывается:
      time    — время начала, формат "ЧЧ:ММ"           (обязательно)
      subject — название предмета                       (обязательно)
-     room    — номер кабинета                          (необязательно)
-     teacher — фамилия учителя                          (необязательно)
 
-   Если room или teacher не нужны — просто не пиши эту строку
-   (или напиши "" — пустая строка тоже не будет показана).
+   Кабинет и учитель не используются (по договорённости показываем
+   только предмет). Если захочешь вернуть их позже, можно добавить
+   в любой урок room: "..." и/или teacher: "..." — сайт умеет их
+   показывать, просто сейчас они нигде не указаны.
+
+   Названия предметов оставлены как в исходном расписании школы
+   (К-тил, Д-тарбия, О-адаб и т.д.) — при необходимости замени их
+   на полные названия, сайт от этого никак не изменится.
    ===================================================================== */
 
 // ===== ИЗМЕНЯЙ РАСПИСАНИЕ ЗДЕСЬ =====
 const schedule = {
   monday: [
-    { time: "08:00", subject: "Математика",      room: "101", teacher: "Иванов" },
-    { time: "08:45", subject: "Русский язык",     room: "204", teacher: "Петрова" },
-    { time: "09:40", subject: "Физика",           room: "305", teacher: "Сидоров" },
-    { time: "10:35", subject: "Информатика",      room: "12",  teacher: "Кузнецова" },
-    { time: "11:30", subject: "История",          room: "204", teacher: "Смирнов" }
+    { time: "07:30", subject: "К-тил" },
+    { time: "08:20", subject: "Технол" },
+    { time: "09:10", subject: "Хим" },
+    { time: "10:05", subject: "Дин тарых" },
+    { time: "10:55", subject: "Тарых" }
   ],
 
   tuesday: [
-    { time: "08:00", subject: "Английский язык",  room: "18",  teacher: "Морозова" },
-    { time: "08:45", subject: "Биология",         room: "210", teacher: "Волкова" },
-    { time: "09:40", subject: "Математика",       room: "101", teacher: "Иванов" },
-    { time: "10:35", subject: "Литература",       room: "204", teacher: "Петрова" },
-    { time: "11:30", subject: "Физкультура",      room: "Спортзал" }
+    { time: "07:30", subject: "Ч-тил" },
+    { time: "08:20", subject: "Д-тарбия" },
+    { time: "09:10", subject: "Биолог" },
+    { time: "10:05", subject: "К-адаб" },
+    { time: "10:55", subject: "О тил" },
+    { time: "11:45", subject: "Тарых" }
   ],
 
   wednesday: [
-    { time: "08:00", subject: "Химия",            room: "308", teacher: "Орлова" },
-    { time: "08:45", subject: "Математика",       room: "101", teacher: "Иванов" },
-    { time: "09:40", subject: "География",        room: "215", teacher: "Егоров" },
-    { time: "10:35", subject: "Английский язык",  room: "18",  teacher: "Морозова" },
-    { time: "11:30", subject: "Музыка",           room: "5" }
+    { time: "07:30", subject: "Георг" },
+    { time: "08:20", subject: "Хим" },
+    { time: "09:10", subject: "К-адаб" },
+    { time: "10:05", subject: "Инф-ка" },
+    { time: "10:55", subject: "А ж коом" },
+    { time: "11:45", subject: "О-адаб" }
   ],
 
   thursday: [
-    { time: "08:00", subject: "Физика",           room: "305", teacher: "Сидоров" },
-    { time: "08:45", subject: "Информатика",      room: "12",  teacher: "Кузнецова" },
-    { time: "09:40", subject: "Русский язык",     room: "204", teacher: "Петрова" },
-    { time: "10:35", subject: "История",          room: "204", teacher: "Смирнов" },
-    { time: "11:30", subject: "Обществознание",   room: "204", teacher: "Смирнов" }
+    { time: "07:30", subject: "Физика" },
+    { time: "08:20", subject: "Биолог" },
+    { time: "09:10", subject: "Георг" },
+    { time: "10:05", subject: "К-адаб" },
+    { time: "10:55", subject: "О-адаб" }
   ],
 
   friday: [
-    { time: "08:00", subject: "Математика",       room: "101", teacher: "Иванов" },
-    { time: "08:45", subject: "Биология",         room: "210", teacher: "Волкова" },
-    { time: "09:40", subject: "Литература",       room: "204", teacher: "Петрова" },
-    { time: "10:35", subject: "Физкультура",      room: "Спортзал" },
-    { time: "11:30", subject: "Классный час" }
+    { time: "07:30", subject: "Физика" },
+    { time: "08:20", subject: "Д-тарбия" },
+    { time: "09:10", subject: "К-тил" },
+    { time: "10:05", subject: "Ч-тил" }
   ]
 };
 
-// Если у последнего урока дня нет следующего, для определения статуса
-// ("сейчас"/"завершён") считаем, что урок длится столько минут:
-const DEFAULT_LESSON_LENGTH_MIN = 45;
+/* Звонки: уроки по 45 минут, перемены по 5 минут, большая перемена —
+   10 минут, после 3-го урока. Отсюда и получаются времена начала выше:
+   07:30, 08:20, 09:10, 10:05 (после большой перемены), 10:55, 11:45. */
+
+// Длительность одного урока в минутах — используется, чтобы определить,
+// идёт ли урок сейчас, или он уже завершён.
+const LESSON_LENGTH_MIN = 45;
 
 // Подписи дней и порядок кнопок
 const DAY_LABELS = {
@@ -157,6 +166,7 @@ function renderLessons(dayKey) {
 
   const viewingToday = dayKey === getTodayKey();
   const nowMin = viewingToday ? new Date().getHours() * 60 + new Date().getMinutes() : null;
+  let nextAlreadyMarked = false; // помечаем "Следующий" только у первого будущего урока
 
   lessons.forEach((lesson, index) => {
     const card = document.createElement("div");
@@ -166,8 +176,7 @@ function renderLessons(dayKey) {
     let statusTag = "";
     if (viewingToday) {
       const start = timeToMinutes(lesson.time);
-      const next = lessons[index + 1];
-      const end = next ? timeToMinutes(next.time) : start + DEFAULT_LESSON_LENGTH_MIN;
+      const end = start + LESSON_LENGTH_MIN;
 
       if (nowMin >= start && nowMin < end) {
         card.classList.add("is-current");
@@ -175,18 +184,11 @@ function renderLessons(dayKey) {
       } else if (nowMin >= end) {
         card.classList.add("is-done");
         statusTag = `<span class="lesson-tag tag-done">✓ Завершён</span>`;
-      } else {
-        // Ближайший будущий урок помечаем как "следующий"
-        const isNext = !lessons.slice(0, index).some((l2, i2) => {
-          const s2 = timeToMinutes(l2.time);
-          const n2 = lessons[i2 + 1];
-          const e2 = n2 ? timeToMinutes(n2.time) : s2 + DEFAULT_LESSON_LENGTH_MIN;
-          return nowMin < e2; // есть более ранний урок, который ещё не завершён
-        });
-        if (isNext) {
-          card.classList.add("is-next");
-          statusTag = `<span class="lesson-tag tag-next">Следующий</span>`;
-        }
+      } else if (!nextAlreadyMarked) {
+        // Первый урок, который ещё не начался (в том числе во время перемены)
+        card.classList.add("is-next");
+        statusTag = `<span class="lesson-tag tag-next">Следующий</span>`;
+        nextAlreadyMarked = true;
       }
     }
 
@@ -290,8 +292,7 @@ function updateStatusCard(dayKey) {
 
   for (let i = 0; i < lessons.length; i++) {
     const start = timeToMinutes(lessons[i].time);
-    const next = lessons[i + 1];
-    const end = next ? timeToMinutes(next.time) : start + DEFAULT_LESSON_LENGTH_MIN;
+    const end = start + LESSON_LENGTH_MIN;
 
     if (nowMin >= start && nowMin < end) {
       current = lessons[i];
@@ -356,4 +357,3 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-                                    
