@@ -1,0 +1,16 @@
+{
+  "short_name": "Расписание",
+  "name": "Расписание уроков",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#eef0f5",
+  "theme_color": "#3457d5",
+  "display": "standalone"
+}
