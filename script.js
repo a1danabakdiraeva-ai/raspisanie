@@ -18,11 +18,11 @@
 // ===== ИЗМЕНЯЙ РАСПИСАНИЕ ЗДЕСЬ =====
 const schedule = {
   monday: [
-    { time: "07:30", subject: "К-тил" },
-    { time: "08:20", subject: "Технол" },
-    { time: "09:10", subject: "Хим" },
-    { time: "10:05", subject: "Дин тарых" },
-    { time: "10:55", subject: "Тарых" }
+    { time: "07:30", subject: "Физика" },
+    { time: "08:20", subject: "Биология" },
+    { time: "09:10", subject: "география" },
+    { time: "10:05", subject: "к-адабият" },
+    { time: "10:55", subject: "о-адабият" }
   ],
 
   tuesday: [
