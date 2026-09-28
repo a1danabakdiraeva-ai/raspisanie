@@ -29,9 +29,9 @@ const schedule = {
     { time: "07:30", subject: "Ч-тил" },
     { time: "08:20", subject: "Д-тарбия" },
     { time: "09:10", subject: "Биолог" },
-    { time: "10:05", subject: "К-адаб" },
-    { time: "10:55", subject: "О тил" },
-    { time: "11:45", subject: "Тарых" }
+    { time: "10:05", subject: "Тарых" },
+    { time: "10:55", subject: "Геомет" },
+    { time: "11:45", subject: "Алгебра" }
   ],
 
   wednesday: [
