@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Моё расписание</title>
+  <meta name="description" content="Расписание уроков на неделю">
+
+  <!-- Внешний шрифт -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- ИКОНКИ С ПРИНУДИТЕЛЬНЫМ СБРОСОМ КЭША (?v=3) -->
+  <link rel="icon" type="image/png" href="./icon.png?v=3">
+  <link rel="shortcut icon" type="image/png" href="./icon.png?v=3">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon.png?v=3">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Расписание">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-top">
+        <div>
+          <h1 class="title">Расписание</h1>
+          <p class="subtitle">Мои уроки на эту неделю · 9-В класс</p>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle" title="Сменить тему" aria-label="Сменить тему оформления">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+
+      <div class="header-meta">
+        <div class="clock-block">
+          <span id="clockTime" class="clock-time">--:--</span>
+          <span class="clock-label">Текущее время</span>
+        </div>
+        <div class="days-count">5 учебных дней</div>
+      </div>
+    </header>
+
+    <!-- ===== ПЕРЕКЛЮЧАТЕЛЬ ДНЕЙ ===== -->
+    <nav class="day-switcher" id="daySwitcher" aria-label="Выбор дня недели">
+      <button class="day-btn" data-day="monday">ПН</button>
+      <button class="day-btn" data-day="tuesday">ВТ</button>
+      <button class="day-btn" data-day="wednesday">СР</button>
+      <button class="day-btn" data-day="thursday">ЧТ</button>
+      <button class="day-btn" data-day="friday">ПТ</button>
+    </nav>
+
+    <!-- ===== СТАТУС ТЕКУЩЕГО УРОКА ===== -->
+    <section id="statusCard" class="status-card" hidden>
+      <p id="statusLabel" class="status-label">Сейчас</p>
+      <p id="statusTime" class="status-time">--:--</p>
+      <p id="statusSubject" class="status-subject">—</p>
+    </section>
+
+    <!-- ===== СПИСОК УРОКОВ ===== -->
+    <main>
+      <h2 id="dayTitle" class="day-title">Понедельник</h2>
+      <div id="lessonsList" class="lessons-list"></div>
+      <p id="emptyMessage" class="empty-message" hidden>На этот день уроков не добавлено.</p>
+      <p id="weekendMessage" class="weekend-message" hidden>Сегодня выходной 🎉<br>Но можно посмотреть расписание на любой день недели.</p>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <p>Расписание • 2026</p>
+      <p>ТГК • @kaguya2_0</p>
+    </footer>
+
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
